@@ -1,295 +1,282 @@
-# LOKL - Sistema de Automatización de Sprints
+# 🚀 Notion Automation Systems
 
-Sistema integral de automatización para gestión de sprints en Notion que captura métricas de performance del equipo y crea nuevos sprints automáticamente.
+![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-API-000000?style=for-the-badge&logo=notion&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-Ready-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)
 
-## Descripción General
+Sistemas de automatización empresarial para Notion que optimizan la gestión de proyectos mediante sprints de 15 días, monitoreo en tiempo real de tareas y análisis automatizado de rendimiento del equipo.
 
-Este sistema automatiza el proceso de cierre de sprints, captura las métricas de rendimiento de cada persona del equipo y crea automáticamente el siguiente sprint. Está diseñado para funcionar con las bases de datos de Notion del sistema LOKL de gestión de proyectos.
+## ✨ **Características Principales**
 
-### Funcionalidades Principales
+- 🎯 **Cierre automático de sprints** cada 15 días con métricas de rendimiento
+- 👀 **Monitoreo en tiempo real** de modificaciones en tareas
+- 🔒 **Sistema de bloqueo** que previene cambios no autorizados post-sprint
+- 📊 **Análisis automático de performance** individual y por departamento
+- 🔄 **Creación automática** del siguiente sprint con configuración base
+- 📝 **Logging completo** y trazabilidad de todas las operaciones
 
-- **Captura automática de performance** al cierre de cada sprint
-- **Creación automática del siguiente sprint** con fechas calculadas
-- **Filtrado inteligente de tareas imprevistas** para métricas justas
-- **Logging detallado** para auditoría y debugging
-- **Interfaz web opcional** con Streamlit para ejecución manual
-- **Validaciones de integridad** para evitar duplicados
+---
 
-## Estructura del Proyecto
+## 🏗️ **Arquitectura del Sistema**
 
+### **Sistema 1: Automatización de Cierre de Sprint**
 ```
-NOTION SISTEMA DE SPRINTS/
-├── venv/                     # Entorno virtual Python
-├── .env                      # Variables de entorno (configuración)
-├── requirements.txt          # Dependencias del proyecto
-├── README.md                 # Esta documentación
-├── sprint_automation.py      # Script principal de automatización
-├── diagnose.py              # Script de diagnóstico del sistema
-├── test_connection.py        # Prueba de conexión con Notion
-├── app.py                   # Interfaz web Streamlit (opcional)
-└── sprint_automation.log    # Archivo de logs (generado automáticamente)
+📅 Ejecución Diaria (6:00 PM COL) → 🔍 Verificar Fecha → 🎯 Cerrar Sprint (si aplica) → 📊 Capturar Performance → 🆕 Crear Nuevo Sprint
 ```
 
-## Configuración
-
-### 1. Variables de Entorno
-
-Crear archivo `.env` en la raíz del proyecto:
-
-```env
-NOTION_TOKEN=secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-DB_SPRINTS_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-DB_TAREAS_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-DB_PERSONAS_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-DB_PERFORMANCE_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+### **Sistema 2: Monitoreo de Tareas en Tiempo Real**
+```
+📡 Webhooks Notion → 🔍 Validar Cambios → 🛡️ Aplicar Reglas → 🔄 Revertir (si necesario) → 📝 Registrar en Log
 ```
 
-### 2. Instalación de Dependencias
+---
 
+## 📁 **Estructura del Proyecto**
+
+```
+notion-automation-systems/
+├── auto/                                # 🚀 Sistemas de automatización principales
+│   ├── sistema_cierre_sprint/          # 🎯 Automatización de cierre de sprints
+│   │   ├── __init__.py
+│   │   ├── sprint_automation.py        # Script principal de automatización
+│   │   └── sprint_automation.log       # Logs de ejecución
+│   └── sistema_monitoreo/              # 👀 Monitoreo en tiempo real
+│       ├── __init__.py
+│       ├── setup_monitoring.py         # Configuración inicial del sistema
+│       ├── task_monitor.py             # Motor de monitoreo reactivo
+│       ├── webhook_server.py           # Servidor de webhooks
+│       ├── webhook_server.log          # Logs del servidor
+│       └── task_snapshots.json         # Snapshots de estado de tareas
+├── test/                               # 🧪 Suite de pruebas completa
+│   ├── core/                          # Tests básicos del sistema
+│   │   ├── test_connection.py         # Verificación de conectividad
+│   │   └── verify_env.py              # Validación de configuración
+│   ├── sistema_cierre_sprint/         # Tests del sistema de cierre
+│   │   ├── debug_departamentos.py     # Diagnóstico de departamentos
+│   │   ├── diagnostic_tareas.py       # Diagnóstico de tareas
+│   │   ├── test_sistema_hibrido.py    # Test de lógica híbrida
+│   │   └── test_sprint_automation.py  # Test completo de automatización
+│   └── sistema_monitoreo/             # Tests del sistema de monitoreo
+├── .env.example                       # Plantilla de variables de entorno
+├── .gitignore                         # Archivos excluidos del repositorio
+├── requirements.txt                   # Dependencias Python
+└── README.md                          # Documentación completa
+```
+
+---
+
+## 🚀 **Instalación y Configuración**
+
+### **1. Clonar Repositorio**
 ```bash
-# Crear entorno virtual
+git clone 
+cd 
+```
+
+### **2. Configurar Entorno Virtual**
+```bash
 python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# o
+venv\Scripts\activate     # Windows
+```
 
-# Activar entorno virtual
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
-
-# Instalar dependencias
+### **3. Instalar Dependencias**
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configuración de Notion
-
-#### Requisitos en Notion:
-- Workspace con plan de pago (requerido para API)
-- Integración creada con permisos de lectura/escritura
-- Bases de datos configuradas según estructura LOKL
-
-#### Permisos necesarios:
-- **Sprints:** Lectura y escritura
-- **Tareas:** Lectura y escritura
-- **Personas:** Lectura
-- **Performance:** Lectura y escritura
-
-## Uso del Sistema
-
-### Ejecución Automática (Recomendada)
-
+### **4. Configurar Variables de Entorno**
 ```bash
-# Cierre completo: captura performance + crea nuevo sprint
-python sprint_automation.py
-
-# Solo crear nuevo sprint (sin cierre)
-python sprint_automation.py --crear-sprint
+cp .env.example .env
+# Editar .env con tus credenciales de Notion
 ```
 
-### Interfaz Web (Opcional)
-
+### **5. Verificar Configuración**
 ```bash
-# Ejecutar interfaz Streamlit
-streamlit run app.py
+python test/core/verify_env.py
+python test/core/test_connection.py
 ```
 
-Abrir navegador en `http://localhost:8501`
+---
 
-### Diagnóstico del Sistema
+## ⚙️ **Configuración de Notion**
 
+### **Bases de Datos Requeridas:**
+
+| Base de Datos | Propósito | Propiedades Críticas |
+|---------------|-----------|---------------------|
+| **Sprints** | Gestión de ciclos de 15 días | `Nombre`, `Fecha Inicio`, `Fecha Fin`, `Es Actual`, `Monitoreo Activo` |
+| **Tareas** | Actividades del equipo | `Nombre`, `Estado`, `Prioridad`, `Personas`, `Sprint`, `Tamaño` |
+| **Personas** | Miembros del equipo | `Nombre`, `Cargo`, `Cuenta Notion`, `Área`, `Capacidad Semanal` |
+| **Performance** | Métricas históricas | `Persona`, `Sprint`, `Score Performance`, `Carga Completada` |
+| **Departamentos** | Organización empresarial | `Nombre`, `Descripción`, `Responsable` |
+| **Log Modificaciones** | Auditoría de cambios | `Tarea Afectada`, `Usuario`, `Acción Tomada`, `Fecha Modificación` |
+
+---
+
+## 🎯 **Sistema de Cierre de Sprint**
+
+### **Funcionalidades:**
+- ✅ **Detección automática** del último día de sprint
+- ✅ **Captura de métricas** de rendimiento individual
+- ✅ **Filtrado inteligente** de tareas (excluye imprevistas no completadas)
+- ✅ **Creación automática** del siguiente sprint
+- ✅ **Logging detallado** de todo el proceso
+
+### **Ejecución:**
 ```bash
-# Verificar configuración y conexiones
-python diagnose.py
+# Ejecución diaria automatizada (recomendado)
+python auto/sistema_cierre_sprint/sprint_automation.py --daily
 
-# Probar solo conexión a Notion
-python test_connection.py
+# Verificar si hay cierre programado hoy
+python auto/sistema_cierre_sprint/sprint_automation.py --check
+
+# Forzar cierre manual (solo testing)
+python auto/sistema_cierre_sprint/sprint_automation.py
 ```
 
-## Lógica de Automatización
-
-### Proceso de Cierre de Sprint
-
-1. **Obtener sprint actual** (marcado como "Es actual")
-2. **Recuperar todas las tareas** del sprint
-3. **Agrupar tareas por persona** asignada
-4. **Aplicar filtro de tareas imprevistas** para métricas justas
-5. **Calcular métricas de performance** por persona
-6. **Crear registros en tabla Performance**
-7. **Establecer relaciones bidireccionales** entre tareas y performance
-8. **Marcar sprint como Finalizado**
-9. **Crear automáticamente el siguiente sprint**
-
-### Filtrado de Tareas Imprevistas
-
-#### Lógica Aplicada:
-- ✅ **Tareas normales (Alta/Media/Baja):** Siempre incluidas
-- ✅ **Tareas imprevistas completadas:** Incluidas en métricas
-- ❌ **Tareas imprevistas NO completadas:** Excluidas de métricas
-
-#### Propósito:
-Las tareas imprevistas no completadas no deben penalizar el rendimiento, ya que son interrupciones no planificadas. Sin embargo, las imprevistas completadas sí cuentan positivamente.
-
-### Cálculo de Métricas
-
-```python
-# Métricas calculadas por persona
-eficiencia = (carga_completada / carga_asignada) * 100
-productividad = (tareas_completadas / tareas_totales) * 100
-score_performance = (eficiencia + productividad) / 2
-```
-
-## Bases de Datos de Notion
-
-### Tablas Requeridas:
-
-#### 1. Sprints
-- **Propiedades clave:** Nombre, Fecha inicio, Fecha fin, Estado, Es actual
-- **Relaciones:** Tareas (bidireccional)
-
-#### 2. Tareas  
-- **Propiedades clave:** Nombre, Sprint, Personas, Prioridad, Tamaño, Estado, Carga
-- **Relaciones:** Sprint, Personas, Performance vinculada (bidireccionales)
-
-#### 3. Personas
-- **Propiedades clave:** Nombre, Área, Estado, Capacidad por sprint
-- **Relaciones:** Tareas (bidireccional)
-
-#### 4. Performance
-- **Propiedades clave:** Nombre, Persona, Sprint, Carga asignada, Tareas completadas, Score Performance
-- **Relaciones:** Persona, Sprint, Tareas vinculadas
-
-## Logging y Monitoreo
-
-### Archivo de Logs
-- **Ubicación:** `sprint_automation.log`
-- **Formato:** `YYYY-MM-DD HH:MM:SS - LEVEL - MESSAGE`
-- **Niveles:** INFO, WARNING, ERROR, CRITICAL
-
-### Información Registrada:
-- Sprints procesados
-- Personas y tareas analizadas
-- Filtrado de tareas imprevistas
-- Métricas calculadas
-- Errores y excepciones
-- Registros creados/actualizados
-
-### Ejemplo de Log:
-```
-2025-01-15 10:30:45 - INFO - Sprint actual encontrado: Sprint 27
-2025-01-15 10:30:46 - INFO - Se encontraron 45 tareas para el sprint
-2025-01-15 10:30:47 - INFO - Filtrado de tareas para Juan Esteban:
-2025-01-15 10:30:47 - INFO -   - Tareas originales: 12
-2025-01-15 10:30:47 - INFO -   - Tareas para métricas: 9
-2025-01-15 10:30:47 - INFO -   - Tareas excluidas: 3
-2025-01-15 10:30:47 - INFO - ✅ Performance capturado para Juan Esteban - Sprint 27
-```
-
-## Funciones Principales
-
-### `obtener_sprint_actual()`
-Encuentra el sprint marcado como "Es actual" en la base de datos.
-
-### `obtener_tareas_del_sprint(sprint_id)`
-Recupera todas las tareas relacionadas con un sprint usando paginación.
-
-### `filtrar_tareas_para_metricas(tareas)`
-Aplica la lógica de filtrado de tareas imprevistas para cálculo justo de métricas.
-
-### `crear_registro_performance(persona_id, sprint_id, sprint_info, tareas)`
-Crea un registro de performance calculando métricas y estableciendo relaciones.
-
-### `crear_nuevo_sprint(sprint_actual_info)`
-Genera automáticamente el siguiente sprint con fechas calculadas.
-
-### `ejecutar_cierre_sprint()`
-Función principal que orquesta todo el proceso de cierre.
-
-## Validaciones y Seguridad
-
-### Prevención de Duplicados
-- Verifica existencia de registros de performance antes de crear
-- Valida si el siguiente sprint ya existe antes de crear
-- Confirma sprint actual antes de procesar
-
-### Manejo de Errores
-- Excepciones capturadas y loggeadas
-- Rollback automático en caso de fallas críticas
-- Validación de datos antes de procesamiento
-
-### Integridad de Datos
-- Relaciones bidireccionales mantenidas
-- Validación de IDs de Notion
-- Verificación de propiedades requeridas
-
-## Deployment y Automatización
-
-### Cron Job (Recomendado)
+### **Cron Job Recomendado:**
 ```bash
-# Ejecutar cada 15 días a las 2:00 AM
-0 2 */15 * * /path/to/venv/bin/python /path/to/sprint_automation.py
+# Ejecutar diariamente a las 6:00 PM Colombia (23:00 UTC)
+0 23 * * * cd /path/to/project && python auto/sistema_cierre_sprint/sprint_automation.py --daily
 ```
 
-### AWS Lambda (Alternativa)
-- Configurar trigger con EventBridge
-- Empaquetar dependencias en layer
-- Variables de entorno en configuración
+---
 
-### Docker (Opcional)
-```dockerfile
-FROM python:3.9-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python", "sprint_automation.py"]
-```
+## 👀 **Sistema de Monitoreo en Tiempo Real**
 
-## Troubleshooting
+### **Funcionalidades:**
+- 🔒 **Bloqueo automático** de modificaciones después del día 4 del sprint
+- 🔄 **Reversión instantánea** de cambios no autorizados
+- 📝 **Logging completo** de todas las modificaciones
+- 🚨 **Detección de evasión** de restricciones
+- 🗑️ **Control de eliminaciones** de tareas
 
-### Errores Comunes
+### **Reglas de Negocio:**
+- **Días 1-4**: Modificaciones libres
+- **Día 5+**: Solo cambios de estado y tareas imprevistas
+- **Excepciones**: Tareas marcadas como "Imprevista" pueden modificarse siempre
 
-#### "No se encontró un sprint activo"
-- Verificar que hay un sprint con "Es actual" = true
-- Confirmar fechas del sprint cubren la fecha actual
-
-#### "Error al obtener información de persona"
-- Validar permisos de la integración en Notion
-- Verificar que las personas tienen relación con tareas
-
-#### "Ya existe un registro de Performance"
-- Normal si se ejecuta múltiples veces el mismo sprint
-- Revisar logs para confirmar que no es error de lógica
-
-### Comandos de Diagnóstico
+### **Configuración:**
 ```bash
-# Verificar configuración completa
-python diagnose.py
+# 1. Configurar monitoreo inicial
+python auto/sistema_monitoreo/setup_monitoring.py
 
-# Probar conexión específica
-python test_connection.py
-
-# Revisar logs recientes
-tail -n 50 sprint_automation.log
-
-# Verificar variables de entorno
-python -c "from dotenv import load_dotenv; load_dotenv(); import os; print('Token:', 'OK' if os.getenv('NOTION_TOKEN') else 'MISSING')"
+# 2. Iniciar servidor de webhooks
+python auto/sistema_monitoreo/webhook_server.py
 ```
 
+### **Webhook URL:**
+```
+http://tu-servidor.com:5000/webhook
+```
 
+---
 
-## Soporte y Mantenimiento
+## 🧪 **Testing y Calidad**
 
-### Contacto Técnico
-- **Sistema desarrollado para:** LOKL
-- **Mantenido por:** Equipo de Tecnología
-- **Última actualización:** Mayo 2025
+### **Tests Disponibles:**
 
-### Contribuciones
-Para modificaciones del sistema:
-1. Crear backup del código actual
-2. Probar cambios en entorno de desarrollo
-3. Validar con datos de prueba
-4. Actualizar documentación
-5. Ejecutar suite de pruebas completa
+#### **Core System Tests:**
+```bash
+python test/core/verify_env.py          # Verificar configuración
+python test/core/test_connection.py     # Test de conectividad
+```
 
-### Licencia
-Sistema propietario para uso interno de LOKL.
+#### **Sprint Automation Tests:**
+```bash
+python test/sistema_cierre_sprint/test_sprint_automation.py      # Test completo
+python test/sistema_cierre_sprint/test_sistema_hibrido.py        # Test lógica híbrida
+python test/sistema_cierre_sprint/debug_departamentos.py         # Debug departamentos
+python test/sistema_cierre_sprint/diagnostic_tareas.py           # Debug tareas
+```
+
+#### **Monitoring System Tests:**
+```bash
+# Tests específicos del sistema de monitoreo disponibles en desarrollo
+```
+
+### **Ejecutar Tests Completos:**
+```bash
+# Ejecutar todos los tests antes de deployment
+python -m pytest test/ -v
+```
+
+---
+
+## 📊 **Métricas y Monitoreo**
+
+### **Logs Generados:**
+- `auto/sistema_cierre_sprint/sprint_automation.log` - Logs de cierre de sprint
+- `auto/sistema_monitoreo/webhook_server.log` - Logs de monitoreo en tiempo real
+- `task_snapshots.json` - Estados de tareas para comparación
+
+### **Endpoints de Monitoreo:**
+- `GET /status` - Estado del sistema de monitoreo
+- `GET /test` - Verificación de funcionamiento
+- `POST /debug` - Debug de webhooks
+
+---
+
+## 🚨 **Códigos de Salida**
+
+| Código | Descripción |
+|--------|-------------|
+| `0` | Éxito en la operación |
+| `1` | Error crítico que requiere intervención |
+
+---
+
+## 📚 **Documentación Adicional**
+
+### **Variables de Entorno:**
+Consulta `.env.example` para la lista completa de variables requeridas.
+
+### **Configuración de Webhooks:**
+1. Crear integración en Notion
+2. Configurar webhook URL: `https://tu-dominio.com/webhook`
+3. Suscribirse a eventos: `page.created`, `page.updated`, `page.deleted`
+
+### **Troubleshooting:**
+- **Error de conexión**: Verificar `NOTION_TOKEN` y permisos de integración
+- **Tareas no detectadas**: Ejecutar `diagnostic_tareas.py`
+- **Problemas de departamentos**: Ejecutar `debug_departamentos.py`
+
+---
+
+## 🤝 **Contribución**
+
+1. Fork el repositorio
+2. Crear branch feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit cambios (`git commit -m 'feat: agregar nueva funcionalidad'`)
+4. Push al branch (`git push origin feature/nueva-funcionalidad`)
+5. Crear Pull Request
+
+---
+
+## 📄 **Licencia**
+
+Este proyecto es privado no se permite el uso de este sin el permiso.
+
+---
+
+## 👥 **Soporte**
+
+Para soporte técnico o preguntas:
+- 📧 Email: Juanesteban@lokl.life
+- 📋 Issues: [GitHub Issues](https://github.com/june1016/NotionAutomationLOKL)
+
+---
+
+## 🔄 **Changelog**
+
+### v1.0.0 (2025-06-19)
+- ✨ Sistema completo de automatización de cierre de sprint
+- ✨ Sistema de monitoreo en tiempo real con webhooks
+- ✨ Suite completa de testing y diagnóstico
+- ✨ Documentación completa y badges informativos
+
+---
