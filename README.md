@@ -3,8 +3,10 @@
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-API-000000?style=for-the-badge&logo=notion&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-Ready-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![LOKL](https://img.shields.io/badge/LOKL-Automatizaci%C3%B3n-6DEBB9?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)
+
+
 
 Sistemas de automatización empresarial para Notion que optimizan la gestión de proyectos mediante sprints de 15 días, monitoreo en tiempo real de tareas y análisis automatizado de rendimiento del equipo.
 
