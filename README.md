@@ -14,6 +14,9 @@
 
 Sistemas de automatización empresarial para Notion que optimizan la gestión de proyectos mediante sprints de 15 días, monitoreo en tiempo real de tareas y análisis automatizado de rendimiento del equipo.
 
+> Nota: Este repositorio es una versión educativa y técnica del proyecto original.  
+> No incluye datos sensibles ni propiedad intelectual confidencial.
+
 ## ✨ **Características Principales**
 
 - 🎯 **Cierre automático de sprints** cada 15 días con métricas de rendimiento
